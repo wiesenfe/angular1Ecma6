@@ -8,8 +8,12 @@ export default class Controller {
         this.dataService = dataService;
         this.list = [{ name: 'Bird' }, { name: 'Elephant' }];
         this.newItem = {};
-        this.data = dataService.read();
+        this.updateData();
         this.subscribeToRealTime();
+    }
+
+    updateData() {
+        this.data = this.dataService.read();
     }
 
     subscribeToRealTime() {
