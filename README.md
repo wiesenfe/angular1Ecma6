@@ -19,3 +19,6 @@ Personal Styleguide for Angular 1.5 / ES6 / Webpack / Karma / Jasmine
 * To launch Karma and unit testing
 
     npm run test
+
+When application is published, it is available there : http://localhost:8000/src/index.html. 
+This location is temporary and will be cleaned up in a later version.
