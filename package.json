@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "karma start karma.conf.js --debug",
-    "watch": "webpack-dev-server --port 8000 --inline --hot"
+    "serve":"node ./backend/server.js",
+    "test": "./node_modules/karma/bin/karma start karma.conf.js --debug",
+    "watch": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js --port 8000 --inline --hot"
   },
   "author": "",
   "license": "ISC",
