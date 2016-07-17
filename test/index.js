@@ -1,2 +1,3 @@
-var context = require.context('../src', true, /Spec.js$/); //make sure you have your directory and regex test set correctly!
+// Load spec files for testing
+var context = require.context('../src', true, /Spec.js$/); 
 context.keys().forEach(context);

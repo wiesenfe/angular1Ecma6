@@ -10,6 +10,14 @@ module.exports = {
         publicPath: '/dist/',
         path: path.join(__dirname, 'dist')
     },
+    devServer: {
+        proxy: {
+            '/rest/*': {
+                target: 'http://localhost:8001',
+                secure: false
+            }
+        }
+    },
     devtool: 'source-map',
     module: {
         loaders: [

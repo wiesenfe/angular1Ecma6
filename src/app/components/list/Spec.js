@@ -47,7 +47,7 @@ describe("List component controller suite", function () {
         expect(dataServiceMock.read).toHaveBeenCalled();
     });
     it("should set data correctly", () => {
-        controller.updateData();
+        controller.updateData();  
         expect(controller.data).toEqual("10%");
     });
     it("should update real time data", () => {
