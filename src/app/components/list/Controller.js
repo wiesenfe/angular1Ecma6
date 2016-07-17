@@ -6,7 +6,7 @@ export default class Controller {
     /* @ngInject */
     constructor(dataService) {
         this.dataService = dataService;
-        this.list = [{ name: 'Bird' }, { name: 'Elephant' }];
+        this.list = [];
         this.newItem = {};
         this.updateData();
         this.subscribeToRealTime();
