@@ -13,17 +13,17 @@ module.exports = {
     devtool: 'source-map',
     module: {
         loaders: [
-            {
-                test: /\.js$/,
-                exclude: /(node_modules|bower_components)/,
-                loader: 'babel?presets[]=es2015'
-            },
-            { test: /\.html$/, loader:'raw'}
+            // Babel transpile
+            { test: /\.js$/, exclude: /node_modules/, loader: 'babel?presets[]=es2015' },
+            // Raw HTML into bundle
+            { test: /\.html$/, loader: 'raw' }
         ]
     },
     plugins: [
+        // Make angular depedency injection compatible with minification
         new ngAnnotatePlugin({ add: true }),
-       // new webpack.optimize.UglifyJsPlugin({ minimize: true, sourceMap: true })
+        // Minification
+        // new webpack.optimize.UglifyJsPlugin({ minimize: true, sourceMap: true })
     ],
     externals: {
         "angular": "angular"
