@@ -1,26 +1,24 @@
-import { BehaviorSubject } from 'rx';
+import { Observable, AsyncSubject } from 'rx';
 
 export default class DataService {
 
     /* @ngInject */
-    constructor($interval) {
-        console.log("Constructed");
-        this.realTimeStream = new BehaviorSubject(0);
-        $interval(() => {
-            this.realTimeStream.onNext(this._random());
-        }, 1000);
+    constructor($http) {
+        this.http = $http;
     }
 
     read() {
-        return this._random() + "%";
+        let subject = new AsyncSubject();
+        this.http.get('/rest/foo.json').then((response)=>{
+            subject.onNext(response);
+            subject.onCompleted();
+        },(error) => {
+            subject.onError(error);
+        });
+        return subject;
     }
 
     readRealTimeUpdates() {
-        return this.realTimeStream;
-    }
-
-    _random() {
-        let value = Math.random();
-        return Math.floor(value * 100);
+        return new Observable.interval(1000);
     }
 }

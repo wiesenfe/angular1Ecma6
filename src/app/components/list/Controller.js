@@ -4,22 +4,27 @@ import { Observable } from 'rx';
 export default class Controller {
 
     /* @ngInject */
-    constructor(dataService) {
+    constructor(dataService,$scope) {
         this.dataService = dataService;
         this.list = [];
         this.newItem = {};
-        this.updateData();
         this.lastId = 0;
+        this.$scope= $scope;
         this.subscribeToRealTime();
     }
 
     updateData() {
-        this.data = this.dataService.read();
+        this.dataService.read().subscribe((response) => {
+            this.data =  response.data.foo;
+        }, (err) => {
+            console.log(`Error ${err}`);
+        });
     }
-
+    
     subscribeToRealTime() {
         this.dataService.readRealTimeUpdates().subscribe((data) => {
             this.realTimeData = data;
+            this.$scope.$digest();
         });
     }
 
@@ -38,8 +43,4 @@ export default class Controller {
             this.newItem = {};
         }
     }
-
-
-
-
 }
