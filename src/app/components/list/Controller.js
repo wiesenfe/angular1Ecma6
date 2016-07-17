@@ -9,6 +9,7 @@ export default class Controller {
         this.list = [];
         this.newItem = {};
         this.updateData();
+        this.lastId = 0;
         this.subscribeToRealTime();
     }
 
@@ -22,10 +23,23 @@ export default class Controller {
         });
     }
 
+    removeItem(itemId) {
+        for (var i = 0; i < this.list.length; i++) {
+            if (this.list[i].id == itemId) {
+                this.list.splice(i, 1);
+            }
+        }
+    }
+
     addItem() {
         if (this.newItem.name) {
+            this.newItem.id = this.lastId++;
             this.list.push(this.newItem);
             this.newItem = {};
         }
     }
+
+
+
+
 }

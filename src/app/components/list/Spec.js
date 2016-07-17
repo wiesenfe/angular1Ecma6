@@ -1,6 +1,6 @@
 import Controller from './Controller.js';
 import { Observable } from 'rx';
-let empty = () => {};
+let empty = () => { };
 
 describe("List component controller suite", function () {
     let controller, dataServiceMock, observable;
@@ -18,14 +18,30 @@ describe("List component controller suite", function () {
         expect(controller.newItem.name).toBeFalsy();
         controller.newItem = { name: "foo" }
         controller.addItem();
-        expect(controller.list.length).toEqual(1);
-        expect(controller.list[0].name).toEqual("foo");
+        controller.newItem = { name: "bar" }
+        controller.addItem();
+        expect(controller.list.length).toEqual(2);
+        expect(controller.list[0]).toEqual({ name: "foo", id: 0 });
+        expect(controller.list[1]).toEqual({ name: "bar", id: 1 });
         expect(controller.newItem.name).toBeFalsy();
     });
     it("should not append anything, newItem has no name", () => {
         controller.addItem();
         expect(controller.list.length).toEqual(0);
     })
+    it("should remove one item form the list", () => {
+        controller.newItem = { name: "foo" }
+        controller.addItem();
+        controller.newItem = { name: "bar" }
+        controller.addItem();       
+        controller.removeItem(0);    
+        expect(controller.list.length).toEqual(1);
+        expect(controller.list[0]).toEqual({ name: "bar", id: 1 });
+        controller.removeItem(0);    
+        expect(controller.list.length).toEqual(1);
+        controller.removeItem(1);    
+        expect(controller.list.length).toEqual(0);
+    });
     it("should call dataService read", () => {
         controller.updateData();
         expect(dataServiceMock.read).toHaveBeenCalled();
