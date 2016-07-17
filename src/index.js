@@ -1,8 +1,8 @@
 'use strict';
 
-import DataService from './app/services/DataService';
+import DataService from './app/services/data/Service';
 import angular from 'angular';
-import List from './app/components/list/Definition.js';
+import List from './app/components/list/Definition';
 
 
 var app = angular.module('app',[]);

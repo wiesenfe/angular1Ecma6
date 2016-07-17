@@ -17,7 +17,7 @@ export default class Controller {
         this.dataService.read().subscribe((response) => {
             this.data =  response.data.foo;
         }, (err) => {
-            console.log(`Error ${err}`);
+            console.error(`Error ${err}`);
         });
     }
     

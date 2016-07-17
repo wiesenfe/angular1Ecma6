@@ -1,4 +1,4 @@
-import DataService from './DataService.js';
+import DataService from './Service';
 import angular from 'angular';
 import { Observable } from 'rx';
 var app = angular.module('myMod', [require('angular-mocks/ngMock')]);
